@@ -1,0 +1,28 @@
+{
+  "tag_name": "0.1",
+  "target_commitish": "main",
+  "name": "0.1",
+  "draft": false,
+  "prerelease": false,
+  "assets": [
+    {
+      "name": "Store.deb",
+      "label": null,
+      "content_type": "application/x-deb",
+      "browser_download_url": "https://www.redir.cf/files/Store.deb"
+    },
+    {
+      "name": "Store.ipa",
+      "label": null,
+      "content_type": "application/octet-stream",
+      "browser_download_url": "https://www.redir.cf/files/Store.ipa"
+    },
+    {
+      "name": "Store.tar",
+      "label": null,
+      "content_type": "application/x-tar",
+      "state": "uploaded",
+      "browser_download_url": "https://www.redir.cf/files/Store.tar"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<locations>
+  <location>
+    <id>mSMhuJSlrizV</id>
+    <convname>Location0</convname>
+    <name>Pocket Instructor</name>
+    <latitude>52.967447</latitude>
+    <longitude> -1.143117</longitude>
+    <target>https://www.pocketinstructor.co.uk</target>
+    <type>Manual Instructor</type>
+    <imageurl>joehandsbehind.jpg</imageurl>
+    <description>07748874630</description>
+  </location>
+</locations>

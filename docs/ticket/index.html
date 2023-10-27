@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!-- 82cd12614196bfa41703 / 775e560-->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>RSP6 decoder</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+		<link rel="stylesheet" href="./govuk.css"/>
+	</head>
+	<body class="govuk-template__body">
+		<script src="./bootstrap.js"></script>
+		<a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+		<header class="govuk-header" role="banner">
+			<div class="govuk-header__container govuk-width-container" style="border-bottom: 10px solid gray;">
+				<div class="govuk-header__logo">
+					<a href="/" class="govuk-header__link govuk-header__link--homepage">
+						<span class="govuk-header__logotype-text">rsp6-decoder</span>
+					</a>
+				</div>
+			</div>
+		</header>
+		<div class="govuk-width-container">
+			<main class="govuk-main-wrapper" id="main-content" role="main">
+				<h1 class="govuk-heading-l">Decode a National Rail mTicket (BETA)</h1>
+				<noscript>
+				<div class="govuk-error-summary" data-module="govuk-error-summary" id="error-banner" style="display: none;">
+					<div role="alert">
+						<h2 class="govuk-error-summary__title" id="error-header">
+							JavaScript is required
+						</h2>
+						<div class="govuk-error-summary__body">
+							<p class="govuk-body" id="error-text">JavaScript is used for decoding.</p>
+						</div>
+					</div>
+				</div>
+				</noscript>
+				<div class="govuk-error-summary" data-module="govuk-error-summary" id="error-banner" style="display: none;">
+					<div role="alert">
+						<h2 class="govuk-error-summary__title" id="error-header">
+							There is a problem
+						</h2>
+						<div class="govuk-error-summary__body">
+							<p class="govuk-body" id="error-text"></p>
+						</div>
+					</div>
+				</div>
+				<p class="govuk-body">This service is currently under testing.</p>
+				<div class="govuk-inset-text">
+					Ticket decoding takes place within the browser.
+				</div>
+				<button class="govuk-button govuk-button--start" data-module="govuk-button" disabled id="scan-button">
+					Scan now
+					<svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+						<path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+					</svg>
+				</button>
+				<details class="govuk-details" id="screenshot-details">
+					<summary class="govuk-details__summary">
+						<span class="govuk-details__summary-text">
+							Use a screenshot instead
+						</span>
+					</summary>
+					<div class="govuk-details__text">
+						<p class="govuk-body">Please ensure <strong>only</strong> the barcode is shown in the image.</p>
+						<div class="govuk-form-group">
+							<label class="govuk-label" for="file-upload-1">
+								Choose a file
+							</label>
+							<input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file">
+							<div id="image-sanctuary" style="display: none;"></div>
+						</div>
+					</div>
+				</details>
+				<details class="govuk-details" id="text-details">
+					<summary class="govuk-details__summary">
+						<span class="govuk-details__summary-text">
+							Use raw text instead
+						</span>
+					</summary>
+					<div class="govuk-details__text">
+						<p class="govuk-body">Input result from an Aztec barcode scanner.</p>
+						<form id="raw-text-form">
+							<div class="govuk-form-group" style="margin-bottom: 10px;">
+								<input class="govuk-input" id="raw-text-in" name="raw-text-in" type="text">
+							</div>
+							<button class="govuk-button" data-module="govuk-button" type="submit">
+								Submit
+							</button>
+						</form>
+					</div>
+				</details>
+				<div id="video-container" style="display: none;">
+					<video id="video" width="100%" height="300" style="border: 1px solid gray"></video>
+				</div>
+				<div id="ticket-content" style="display: none;">
+					<p class="govuk-body" id="ticket-fromto"></p>
+					<span class="govuk-heading-xl" style="font-weight: normal; text-align: center; margin-bottom: 0.5em !important;"><span id="origin">from</span> → <span id="dest">to</span></span>
+					<table class="govuk-table">
+						<tbody class="govuk-table__body" id="ticket-data">
+						</tbody>
+					</table>
+					<details class="govuk-details">
+						<summary class="govuk-details__summary">
+							<span class="govuk-details__summary-text">
+								View ticket as JSON
+							</span>
+						</summary>
+						<div class="govuk-details__text">
+							<pre id="raw-json">
+{
+  "lol": "lmao"
+}
+							</pre>
+						</div>
+					</details>
+				</div>
+				<details class="govuk-details" id="raw-barcode-wrapper" style="display: none;">
+					<summary class="govuk-details__summary">
+						<span class="govuk-details__summary-text">
+							View scanned barcode
+						</span>
+					</summary>
+					<div class="govuk-details__text">
+						<pre id="raw-barcode">
+{
+  "lol": "lmao"
+}
+						</pre>
+					</div>
+				</details>
+				<div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" id="decode-banner" style="display: none;">
+					<div class="govuk-notification-banner__header">
+						<h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+							Decoding failed
+						</h2>
+					</div>
+					<div class="govuk-notification-banner__content">
+						<p class="govuk-notification-banner__heading">
+						We could not decode that ticket
+						</p>
+						<p class="govuk-body">Try another one instead.</br><pre id="decode-reason"></pre></span></p>
+					</div>
+				</div>
+			</main>
+		</div>
+		<footer class="govuk-footer" role="contentinfo">
+			<div class="govuk-width-container">
+				<div class="govuk-footer__meta">
+					<div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+						<span class="govuk-footer__licence-description">
+							Decoder version <span id="code-version" class="id-field">???</span>.
+							Site designed with <a class="govuk-footer__link" href="https://github.com/alphagov/govuk-frontend">GOV.UK Design System</a>, under the terms of the <a class="govuk-footer__link" href="https://github.com/alphagov/govuk-frontend/blob/master/LICENSE.txt">MIT License</a>. 
+						</span>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

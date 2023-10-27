@@ -1,0 +1,12 @@
+#!name=Duolingo
+
+[URL Rewrite]
+^https:\/\/simg-ssl\.duolingo\.com\/videos\/promo\/.+ - REJECT
+
+[Script]
+Duolingo = type=http-response,pattern=^https:\/\/ios-api-2\.duolingo\.com\/.+\/batch,max-size=0,requires-body=true,timeout=10,script-update-interval=60,script-path=https://raw.githubusercontent.com/KikMyaz/kikmyaz.github.io/dev/docs/shadowrocket/rules/duolingo.js
+DuolingoPromo = type=http-response,pattern=^https:\/\/ios-api-2\.duolingo\.com\/.+\/plus-promotions\/decisions\/.+,max-size=0,requires-body=true,timeout=10,script-update-interval=60,script-path=https://raw.githubusercontent.com/KikMyaz/kikmyaz.github.io/dev/docs/shadowrocket/rules/duolingo_promo.js
+DuolingoSession = type=http-request,pattern=^https:\/\/ios-api-2\.duolingo\.com\/.+\/sessions\/.+,timeout=10,script-update-interval=60,script-path=https://raw.githubusercontent.com/KikMyaz/kikmyaz.github.io/dev/docs/shadowrocket/rules/duolingo_session.js
+
+[MITM]
+hostname = %APPEND% ios-api-2.duolingo.com

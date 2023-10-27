@@ -1,0 +1,9 @@
+#!name=TextNow
+
+[Script]
+TextNow = type=http-response,pattern=^https:\/\/api\.textnow\.me\/api2.0\/users\/.+,requires-body=1,max-size=0,script-update-interval=-1,script-path=https://raw.githubusercontent.com/KikMyaz/kikmyaz.github.io/dev/docs/shadowrocket/rules/textnow.js
+TextNowSubscription = type=http-response,pattern=https://api.textnow.me/api2.0/users/*/(premium|subscription)_state*,requires-body=1,max-size=0,script-update-interval=-1,script-path=https://raw.githubusercontent.com/KikMyaz/kikmyaz.github.io/dev/docs/shadowrocket/rules/textnow_subscription.js
+TextNowWallet = type=http-response,pattern=https://api.textnow.me/api2.0/users/*/wallet*,requires-body=1,max-size=0,script-update-interval=-1,script-path=https://raw.githubusercontent.com/KikMyaz/kikmyaz.github.io/dev/docs/shadowrocket/rules/textnow_wallet.js
+
+[MITM]
+hostname = %APPEND% api.textnow.me

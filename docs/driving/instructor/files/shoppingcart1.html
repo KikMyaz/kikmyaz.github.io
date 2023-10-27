@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+
+<html>
+
+<head>
+  <title>BlankTemplate1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style type="text/css">
+    body{background:#fff;}
+    .shoppingcart_container
+    {
+        padding: 10px;
+        min-height: 330px;
+    }
+    .shoppingcart_table
+    {
+        width:100%;
+        background:#eaedf1;
+        font-size: 14px;
+        font-family: Sans-Serif;
+        font-weight: 200;
+        margin: 0 0 10px 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        border-bottom: solid 2px #d9d9d9;
+        border-spacing: 0;
+    }
+    .shoppingcart_checkout {padding: 10px}
+    .shoppingcart_checkout #checkout
+    {
+        width: 100%;
+        color: #fff;
+        font-weight: 200;
+        background: #363f4b;
+        border: none;
+        -webkit-appearance: none;
+        -moz-appearance:    none;
+        appearance:         none;
+        padding: 10px 0;
+        font-size: 13px;
+        text-align: center;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+    .shoppingcart_image
+    {
+        width:80px;
+        height:80px;
+        vertical-align:middle;
+        -webkit-border-top-left-radius: 3px;
+        -moz-border-radius-topleft: 3px;
+        border-top-left-radius: 3px;
+        margin-right: 10px;
+    }
+    .shoppingcart_link{font-weight:200; color: #596069; font-family: Sans-Serif; font-size: 12px;}
+    .shoppingcart_title{font-weight: 700; color: #596069}
+    .shoppingcart_btn
+    {
+        color: #a8abad;
+        font-weight: 200;
+        background: #fff;
+        border: none;
+        -webkit-appearance: none;
+        -moz-appearance:    none;
+        appearance:         none;
+        padding: 6px;
+        font-size: 10px;
+        text-align: center;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        border-bottom: solid 1px #d9d9d9;
+        float: right;
+        margin: -30px 7px 0px 0;
+        
+    }
+  </style>
+</head>
+<body>
+<!--Not to remove - Begin-->
+<input name="shprecipient" id="shprecipient" value="christhomp39@hotmail.com" type="hidden">
+<input name="shprecipient" id="shpmerchant" value="Drivebook UK" type="hidden">
+<input name="shprecipient" id="shpcurrency" value="GBP" type="hidden">
+<input name="shpreturnurl" id="shpreturnurl" value="user.app" type="hidden">
+<input name="shppage" id="shppage" value="tab1.html" type="hidden">
+<input name="shprecipient" id="shpisTest" value="Yes" type="hidden">
+<input name="shpmessfailed" id="shpmessfailed" value="Failed pay." type="hidden">
+<input name="shpmesssucc" id="shpmesssucc" value="Successful pay." type="hidden">
+<!--Not to remove - End-->
+<script type="text/javascript">
+	function getShoppingCart(SC)
+	{
+		//Value for link paypalshop.
+		var recipient = document.getElementById("shprecipient").value ;//(Required)
+		var merchant = document.getElementById("shpmerchant").value ;//(Optional)
+		var currency = document.getElementById("shpcurrency").value ;//(Optional)
+		var returnurl = document.getElementById("shpreturnurl").value;//(Optional)
+		var page = document.getElementById("shppage").value;//(Optional)
+		var isTest = document.getElementById("shpisTest").value;//(Required)
+		var shipingForOneTypeItems = 0;//(Optional)$0 shipping for one item(Example)
+		var taxForItem = 0;//(Optional)$0 tax for one item(Example)
+
+		//SC - this is array, which contains struct.
+		//SC[i].itemid - product Id;(Required)
+		//SC[i].itemname - product Name;(Required)
+		//SC[i].itemcount - a quantity of the product;(Required)
+		//SC[i].itemprice - product price.(Required)
+		//Other parameters of struct use in design. Example: SC[i].urlimg and SC[i].urlinfo.(Optional)
+
+		if(SC != undefined)
+		{
+			var itemsAttributeInURL = "";
+			//Change html code for your design - Begin
+			var HtmlProduct = "<div class='shoppingcart_container' >";
+			for(var i=0; i < SC.length; i++)
+			{
+				var link;
+				if(SC[i].urlinfo != undefined)
+					link = decodeURIComponent(SC[i].urlinfo);
+				else
+					link = "";
+
+				HtmlProduct += "<table cellspacing='0' cellpadding='0' class='shoptbl shoppingcart_table'><tr><td rowspan='3' width='80' valign='top' align='center' height='80'>";
+				if(SC[i].urlimg != undefined)
+					HtmlProduct += "<a href=" + link + "><img src='" + decodeURIComponent(SC[i].urlimg) + "' class='shoppingcart_image'></img></a></td>";
+				else
+					HtmlProduct += "<a href=" + link + "><img src='' class='shoppingcart_image'></img></a></td>";
+				if(SC[i].itemname != undefined)
+				{
+					HtmlProduct +="<td><a class='shoppingcart_link' href="+link+"><span class='shoppingcart_title'>Name:</span> "+ decodeURIComponent(SC[i].itemname) +"</a></td></tr>";
+					itemsAttributeInURL += "&item_name_"+(i+1)+"="+ SC[i].itemname;
+				}
+				else
+				{
+					HtmlProduct += "<td><a class='shoppingcart_link' href=" + link + "><span class='shoppingcart_title'>Name:</span> </a></td></tr>";
+					itemsAttributeInURL += "&item_name_"+(i+1)+"=Item_"+(i+1);
+				}
+				if(SC[i].itemcount != undefined)
+				{
+					HtmlProduct += "<tr><td><a class='shoppingcart_link' href=" + link + "><span class='shoppingcart_title'>Count:</span> " + SC[i].itemcount + "</a></td></tr>";
+					itemsAttributeInURL += "&quantity_"+(i+1)+"="+ SC[i].itemcount;
+				}
+				else
+				{
+					HtmlProduct += "<tr><td><a class='shoppingcart_link' href=" + link + "><span class='shoppingcart_title'>Count:</span> 0</a></td></tr>";
+					itemsAttributeInURL += "&quantity_"+(i+1)+"=0";
+				}
+				if(SC[i].itemprice != undefined)
+				{
+					HtmlProduct += "<tr><td><a class='shoppingcart_link' href=" + link + "><span class='shoppingcart_title'>Price:</span> " + SC[i].itemprice + "</a></td></tr>";
+					itemsAttributeInURL += "&amount_"+(i+1)+"="+ SC[i].itemprice;
+				}
+				else
+				{
+					HtmlProduct += "<tr><td><a class='shoppingcart_link' href=" + link + "><span class='shoppingcart_title'>Price:</span> 0</a></td></tr></a>";
+					itemsAttributeInURL += "&amount_"+(i+1)+"=0";
+				}
+				if(SC[i].itemid != undefined)
+					HtmlProduct +="<tr><td colspan='2' align='left'><a href='removefromcart://"+ SC[i].itemid +"'><input class='shoppingcart_btn' id='remove1' type='button' value='Remove from cart' /></a></td></tr>";
+				else
+					HtmlProduct +="<tr><td colspan='2' align='left'></td></tr>";
+
+				HtmlProduct += "</table>";
+			}
+			HtmlProduct += "</div>";
+			HtmlProduct += "<div class='shoppingcart_checkout'><a href='external://http://seattleclouds.com/PayPalShop.aspx?business=" + recipient + "&currency=" + currency + itemsAttributeInURL + "&shipping=" + shipingForOneTypeItems + "&tax=" + taxForItem + "&return=" + returnurl + "&name=" + merchant + "&number=" + (Math.floor(Math.random() * 9999999999999)) + "&test=" + isTest + "&page=" + page + "'><input id='checkout' type='button' value='Checkout'/></a></div>";
+			//Change html code for your design - End
+			var shop = document.getElementById('shop');
+			shop.innerHTML = HtmlProduct;
+		}
+	}
+</script>
+
+<form id="shop"></form>
+
+
+
+
+
+
+</body>
+</html>

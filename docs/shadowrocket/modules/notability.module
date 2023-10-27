@@ -1,0 +1,7 @@
+#!name=Notability
+
+[Script]
+Notability = type=http-response,pattern=^https://notability.com/subscriptions,requires-body=1,script-update-interval=-1,script-path=https://raw.githubusercontent.com/KikMyaz/kikmyaz.github.io/dev/docs/shadowrocket/rules/notability.js
+
+[MITM]
+hostname = %APPEND% notability.com

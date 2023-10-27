@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pageConfig pageType="order">
+	<merchantEmail></merchantEmail>
+	<transactionDescription>Mobile Store order</transactionDescription>
+	<receiptEmailSubject>Order receipt from Mobile Store ($orderTotal$)</receiptEmailSubject>
+	<receiptEmailBody>Hello $buyerFirstName$ $buyerLastName$, &lt;br /&gt;&lt;br /&gt;
+Thanks for buying from us!&lt;br /&gt;&lt;br /&gt;
+Order date: $orderDate$&lt;br /&gt;
+Description: $transactionDescripton$&lt;br /&gt;
+Order instructions: $orderInstructions$&lt;br /&gt;
+Delivery method: $deliveryMethod$&lt;br /&gt;
+Phone number: $phoneNumber$&lt;br /&gt;
+Delivery address: $deliveryAddress$&lt;br /&gt;
+Pickup address: $pickUpAddress$&lt;br /&gt;
+Payment method: $paymentMethod$&lt;br /&gt;
+&lt;br /&gt;$itemListTable$&lt;br /&gt;&lt;br /&gt;
+Paid with: $cardNumberShort$</receiptEmailBody>
+	<orderEmailSubject>Order received</orderEmailSubject>
+	<orderEmailBody>Order Details: &lt;br /&gt;
+Date: $orderDate$&lt;br /&gt;
+Email: $buyerEmail$&lt;br /&gt;
+Phone number: $phoneNumber$&lt;br /&gt;
+Name: $buyerFirstName$ $buyerLastName$&lt;br /&gt;
+Description: $transactionDescripton$&lt;br /&gt;
+Order instructions: $orderInstructions$&lt;br /&gt;
+Delivery method: $deliveryMethod$&lt;br /&gt;
+Delivery address: $deliveryAddress$&lt;br /&gt;
+Pickup address: $pickUpAddress$&lt;br /&gt;
+Payment method: $paymentMethod$&lt;br /&gt;
+&lt;br /&gt;$itemListTable$&lt;br /&gt;&lt;br /&gt;</orderEmailBody>
+	<authorizeNetLoginId></authorizeNetLoginId>
+	<authorizeNetTransactionKey></authorizeNetTransactionKey>
+</pageConfig>

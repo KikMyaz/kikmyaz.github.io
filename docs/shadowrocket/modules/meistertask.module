@@ -1,0 +1,7 @@
+#!name=MeisterTask
+
+[Script]
+MeisterTask = type=http-response,pattern=https://www.mindmeister.com/api/v2/licenses/meistertask,requires-body=1,script-update-interval=-1,script-path=https://raw.githubusercontent.com/KikMyaz/kikmyaz.github.io/dev/docs/shadowrocket/rules/meistertask.js
+
+[MITM]
+hostname = %APPEND% www.mindmeister.com
