@@ -1,7 +1,7 @@
 ## Server
 
 <!-- 
-git checkout --orphan temp; git add -A; git commit -am "initial commit"; git branch -D dev; git branch -m dev; git push -f origin dev
+git checkout --orphan temp; git add -A; git commit -am "initial commit"; git branch -D dev; git branch -m dev; git push -f origin dev; git -c gc.reflogExpire=0 -c gc.reflogExpireUnreachable=0 -c gc.rerereresolved=0 -c gc.rerereunresolved=0 -c gc.pruneExpire=now gc "$@"
 -->
 
 <!--
